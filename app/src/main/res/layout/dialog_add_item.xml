@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*">
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right|center_vertical"
+            android:text="Название" />
+        <EditText android:id="@+id/nameEditText" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right|center_vertical"
+            android:text="Цена" />
+        <EditText android:id="@+id/priceEditText" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_gravity="right|center_vertical"
+            android:text="Вес" />
+        <EditText android:id="@+id/weightEditText" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/hiddenTextView"
+            android:layout_height="0dp"
+            android:layout_span="2"
+            android:visibility="invisible" />
+    </TableRow>
+</TableLayout>
