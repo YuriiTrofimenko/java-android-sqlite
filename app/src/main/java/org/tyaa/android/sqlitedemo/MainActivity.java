@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         this.dbHelper = new MySQLiteOpenHelper(this);
 
         ListView listView = (ListView) this.findViewById(R.id.mainListView);
+        this.registerForContextMenu(listView);
         ArrayList<Product> lstProducts = new ArrayList<>();
 
         final SQLiteDatabase db = this.dbHelper.
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     //TODO
                 }
                 MainActivity.this.curItem = position;
-                MainActivity.this.dialog.show();
+                //MainActivity.this.dialog.show();
             }
         });
 
@@ -187,7 +190,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
         //-- Получение доступа к БД ---------------------
         final SQLiteDatabase db = this.dbHelper.
                 getWritableDatabase();
@@ -274,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onContextItemSelected(item);
     }
 
 }
